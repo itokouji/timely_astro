@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { frontmatter } from "../content/about.md";
+---
+
+<Layout title={frontmatter.title} description={frontmatter.hero.description}>
+  <section class="bg-slate-950 py-20 text-white">
+    <div class="container-wide"><p class="text-xs font-black tracking-[.2em] text-lime-300">{frontmatter.hero.eyebrow}</p><h1 class="mt-3 text-5xl font-black">{frontmatter.hero.title}</h1></div>
+  </section>
+  <section class="container-wide py-16">
+    <div class="grid gap-10 lg:grid-cols-3">
+      {frontmatter.cards.map((c) => (
+        <div class="rounded-3xl bg-slate-100 p-8"><p class="text-xs font-black tracking-[.15em] text-teal-700">{c.number}</p><h2 class="mt-3 text-2xl font-black">{c.title}</h2><p class="mt-4 leading-8 text-slate-600">{c.text}</p></div>
+      ))}
+    </div>
+  </section>
+</Layout>

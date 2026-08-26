@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+  --color-ink: #102a43;
+  --color-court: #0f766e;
+  --color-lime: #d9f99d;
+  --color-paper: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #102a43;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #d9f99d;
+  color: #102a43;
+}
+
+.container-wide {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.shuttle {
+  width: 96px;
+  height: 96px;
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  transform: rotate(25deg);
+  opacity: .9;
+}
+
+.shuttle::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 72px;
+  margin: 28px auto 0;
+  border: 3px solid currentColor;
+  border-top: 0;
+  transform: skew(-15deg);
+}
+
+.card-lift {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, .10);
+}
