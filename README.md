@@ -49,10 +49,10 @@ npm run build
 
 ## GitHub Pagesで公開
 
-このリポジトリには、`main` ブランチへの push をきっかけにビルド・公開する GitHub Actions を設定しています。
+このリポジトリには、`main` ブランチへの push をきっかけにビルドし、`gh-pages` ブランチへ公開する GitHub Actions を設定しています。外部の `actions/*` を使用しないため、外部 Action を禁止しているリポジトリでも実行できます。
 
 1. GitHub にこのプロジェクトを push します（デフォルトブランチは `main` にします）。
-2. リポジトリの **Settings > Pages > Build and deployment** で、Source に **GitHub Actions** を選択します。
+2. リポジトリの **Settings > Pages > Build and deployment** で、Source に **Deploy from a branch**、Branch に **`gh-pages` / `/ (root)`** を選択します。
 3. `main` に push すると、Actions の `Deploy Astro site to GitHub Pages` が実行されます。
 4. 公開 URL は、リポジトリの **Settings > Pages** に表示されます。
 
