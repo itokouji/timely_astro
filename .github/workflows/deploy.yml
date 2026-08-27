@@ -20,7 +20,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git -c http.extraheader="AUTHORIZATION: bearer ${GH_TOKEN}" \
+          auth_header=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 --wrap=0)
+          git -c http.extraheader="AUTHORIZATION: Basic ${auth_header}" \
             clone --depth 1 --branch "${GITHUB_REF_NAME}" \
             "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git" source
       - name: Install dependencies and build
@@ -35,6 +36,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           publish_dir=$(mktemp -d)
+          auth_header=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 --wrap=0)
           cp -R source/dist/. "$publish_dir/"
           cd "$publish_dir"
           git init
@@ -42,4 +44,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --all
           git commit -m "Deploy Astro site"
-          git -c http.extraheader="AUTHORIZATION: bearer ${GH_TOKEN}" push --force "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git" HEAD:gh-pages
+          git -c http.extraheader="AUTHORIZATION: Basic ${auth_header}" push --force "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git" HEAD:gh-pages
