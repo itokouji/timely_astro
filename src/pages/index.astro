@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { frontmatter } from "../content/index.md";
+import coatImage from "../images/coat.jpg";
 
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
@@ -17,12 +18,11 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
         </div>
       </div>
 
-      <div class="relative hidden min-h-[420px] items-center justify-center lg:flex">
+      <div class="relative min-h-[320px] overflow-hidden rounded-3xl border border-white/10 shadow-2xl lg:min-h-[420px]">
         <div class="absolute size-80 rounded-full bg-teal-500/20 blur-3xl"></div>
-        <div class="relative grid size-72 place-items-center rounded-[40%] border border-white/10 bg-white/5 shadow-2xl backdrop-blur">
-          <div class="shuttle text-lime-300"></div>
-          <span class="absolute bottom-8 right-8 rounded-full bg-white px-4 py-2 text-xs font-black text-slate-950">TIMELY</span>
-        </div>
+        <img src={coatImage.src} width={coatImage.width} height={coatImage.height} alt="TIMELYのコート" class="absolute inset-0 size-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/10"></div>
+        <span class="absolute bottom-6 right-6 rounded-full bg-white px-4 py-2 text-xs font-black text-slate-950">TIMELY</span>
       </div>
     </div>
   </section>
